@@ -4,7 +4,8 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Text, View } from 'react-native';
-import Homescreen from './client/components/Homescreen';
+import HomePage from './client/components/HomePage';
+import Login from './client/components/Login';
 import styles from './client/styles';
 
 // Create a Stack
@@ -17,8 +18,9 @@ export default function App() {
         <Text>Come on man!</Text>
         <StatusBar style='auto' />
       </View> */}
-      <Stack.Navigator>
-        <Stack.Screen name="Home of Surfers" component={Homescreen} />
+      <Stack.Navigator initialRouteName="Login">
+        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Home Page" component={HomePage} />
       </Stack.Navigator>
     </NavigationContainer>
   );
