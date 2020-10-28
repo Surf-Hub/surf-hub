@@ -37,6 +37,17 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     margin: '1rem',
   },
+  searchBar: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  searchBreaks: {
+    padding: '.2rem',
+    border: '1px solid black',
+    borderRadius: '5px',
+    margin: '1rem',
+  },
 });
 
 export default styles;
