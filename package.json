@@ -16,6 +16,7 @@
     "express": "^4.17.1",
     "nodemon": "^2.0.6",
     "passport": "^0.4.1",
+    "passport-google-oauth20": "^2.0.0",
     "passport-linkedin-oauth2": "^2.0.0",
     "pg": "^8.4.2",
     "react": "16.13.1",
