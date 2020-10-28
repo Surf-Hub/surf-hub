@@ -17,6 +17,26 @@ const styles = StyleSheet.create({
     marginBottom: '1rem',
     padding: '0.5rem',
   },
+  homePageLogo: {
+    height: 40,
+    width: 40,
+  },
+  profilePic: {
+    height: 40,
+    width: 40,
+  },
+  surfHubSplash: {
+    fontWeight: 'bold',
+    fontSize: 'large',
+    color: '#2c5bb6',
+  },
+  homeNavBar: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    margin: '1rem',
+  },
 });
 
 export default styles;
