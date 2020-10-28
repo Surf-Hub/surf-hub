@@ -48,6 +48,12 @@ const styles = StyleSheet.create({
     borderRadius: '5px',
     margin: '1rem',
   },
+  homeBreakBox: {
+    height: '20vh',
+    width: '80vw',
+    border: '1px solid black',
+    borderRadius: '5px',
+  },
 });
 
 export default styles;
