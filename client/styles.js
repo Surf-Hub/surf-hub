@@ -30,6 +30,10 @@ const styles = StyleSheet.create({
     fontSize: 'large',
     color: '#2c5bb6',
   },
+  backGroundImage: {
+    width: '100vw',
+    height: '100vh',
+  },
   homeNavBar: {
     flex: 1,
     flexDirection: 'row',
@@ -47,6 +51,14 @@ const styles = StyleSheet.create({
     border: '1px solid black',
     borderRadius: '5px',
     margin: '1rem',
+    color: 'white',
+  },
+  homeBreakBox: {
+    height: '20vh',
+    width: '80vw',
+    border: '1px solid black',
+    borderRadius: '5px',
+    opacity: '50%',
   },
 });
 
