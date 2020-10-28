@@ -10,6 +10,7 @@ export default function SearchBar() {
     <View style={styles.searchBar}>
       <TextInput
         placeholder="Search Breaks"
+        placeholderTextColor="white"
         style={styles.searchBreaks}
         value={searchBar}
         onChange={(e) => setSearchBar(e.target.value)}
