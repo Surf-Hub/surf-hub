@@ -51,8 +51,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  searchButton: {
+    borderWidth: 1,
+    borderColor: '#669BBC',
+    borderRadius: 5,
+    backgroundColor: '#3AAED8',
+    padding: 5,
+  },
   searchBreaks: {
-    padding: 0.2,
+    padding: 5,
     borderWidth: 1,
     borderColor: 'black',
     borderRadius: 5,
@@ -72,6 +79,9 @@ const styles = StyleSheet.create({
     marginTop: 'auto',
     marginBottom: 0.75,
     marginRight: 0.75,
+  },
+  modalContainer: {
+    marginTop: 50,
   },
 });
 

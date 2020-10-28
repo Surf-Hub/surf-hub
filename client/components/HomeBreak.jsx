@@ -49,8 +49,9 @@ export default function HomeBreak() {
         animationType="slide"
         onRequestClose={() => console.log('closed')}
       >
-        <Text>Hello world</Text>
-        <Button title="Exit Modal" onPress={() => setModalVisible(false)} />
+        <View style={styles.modalContainer}>
+          <Button title="Exit Modal" onPress={() => setModalVisible(false)} />
+        </View>
       </Modal>
     </View>
   );
