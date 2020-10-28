@@ -11,7 +11,7 @@ export default function Login({ navigation }) {
   //   Linking.openURL('http://localhost:3000/auth/linkedin');
   // }
   const navToHome = () => {
-    navigation.navigate('Home Page');
+    navigation.navigate('Surf Hub');
   };
 
   return (
