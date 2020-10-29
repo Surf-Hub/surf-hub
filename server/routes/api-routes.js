@@ -4,14 +4,16 @@ const apiController = require('../controllers/apiController.js');
 
 apiRouter.get('/', 
     apiController.getWeatherData,
-    apiController.getTideData, 
-    (req, res) => {
+    apiController.getTideData, (req, res) => {
         res.status(200).json(res.locals.surfConditions)
 });
 
-apiRouter.post('/', apiController.addFavLocation, (req, res) => {
-    res.status(200).send('success')
+apiRouter.post('/fav', apiController.addFavLocation, (req, res) => {
+    res.status(200).json(res.locals.newFav)
 })
 
+apiRouter.get('/fav', apiController.getAllFavLocations, (req, res) => {
+    res.status(200).json(res.locals.allFavLocations)
+})
 
 module.exports = apiRouter;
