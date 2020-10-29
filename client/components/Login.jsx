@@ -4,14 +4,14 @@ import { Text, View, Image, Button } from 'react-native';
 import * as Linking from 'expo-linking';
 import styles from '../styles';
 
-const logo = require('../../assets/logo.jpg');
+const logo = require('../../assets/logo.png');
 
 export default function Login({ navigation }) {
   // const handlePress = () => {
   //   Linking.openURL('http://localhost:3000/auth/linkedin');
   // }
   const navToHome = () => {
-    navigation.navigate('Home Page');
+    navigation.navigate('Surf Hub');
   };
 
   return (
