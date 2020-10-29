@@ -1,5 +1,6 @@
 const apiController = {};
 const fetch = require('node-fetch');
+const db = require('../models.js')
 
 apiController.getWeatherData = async (req, res, next) => {
   const { lat, lng } = req.body;
@@ -37,7 +38,7 @@ apiController.getWeatherData = async (req, res, next) => {
 
         const surfConditions = {
           swellHeight: getAvg(data.hours[0].swellHeight) * 3.28,
-          waterTemperature: (getAvg(data.hours[0].waterTemperature)*9/5) + 32,
+          waterTemperature: (getAvg(data.hours[0].waterTemperature) * 9) / 5 + 32,
           windDirection: getAvg(data.hours[0].windDirection) * 1,
         };
         res.locals.surfConditions = surfConditions;
@@ -66,6 +67,24 @@ apiController.getTideData = async (req, res, next) => {
         res.locals.surfConditions.tide = data.data[0].type;
         return next();
       });
+  } catch (err) {
+    return next(err);
+  }
+};
+
+apiController.addFavLocation = async (req, res, next) => {
+  const { userId, location } = req.body;
+
+  const postConfig = {
+    text: 'INSERT INTO user_favorites (userId, location) VALUES ($1, $2) RETURNING *;',
+    values: [userId, location],
+  };
+
+  try {
+    await db.query(postConfig, (err, res) => {
+      console.log('added new favorite', res);
+      return next();
+    });
   } catch (err) {
     return next(err);
   }
