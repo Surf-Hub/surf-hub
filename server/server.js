@@ -20,7 +20,7 @@ passport.use(
     {
       clientID: '1012785718065-iijoqj7jnqad7jojjpe50141d7l311n3.apps.googleusercontent.com',
       clientSecret: 'DcjBoJlWgBM4gdup7jef_Ilr',
-      callbackURL: 'http://localhost:3000/auth/google/callback',
+      callbackURL: '/auth/google/redirect',
     },
     function (accessToken, refreshToken, profile, done) {
       db.query(`SELECT * FROM Users WHERE userId='${profile.id}'`)
@@ -46,11 +46,11 @@ passport.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use('/auth', passport.authenticate('google', { scope: ['profile'] }));
-
-app.get('/auth/google/callback', passport.authenticate('google'), (req, res) => {
-  res.redirect('http://localhost:3000/');
+app.get('/auth/google/redirect', passport.authenticate('google'), (req, res) => {
+  res.redirect('http://localhost:19002/');
 });
+
+app.use('/auth', passport.authenticate('google', { scope: ['profile'] }));
 
 app.listen(PORT, () => {
   console.log(`Server Listening on ${PORT}`);
