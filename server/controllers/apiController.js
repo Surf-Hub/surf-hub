@@ -81,13 +81,31 @@ apiController.addFavLocation = async (req, res, next) => {
   };
 
   try {
-    await db.query(postConfig, (err, res) => {
-      console.log('added new favorite', res);
+    await db.query(postConfig, (err, result) => {
+      res.locals.newFav = result.rows[0];
       return next();
     });
   } catch (err) {
     return next(err);
   }
 };
+
+apiController.getAllFavLocations = async (req, res, next) => {
+  const { userId, location } = req.body;
+
+  const postConfig = {
+    text: 'SELECT * FROM user_favorites where userId = $1;',
+    values: [userId],
+  };
+
+  try {
+    await db.query(postConfig, (err, result) => {
+      res.locals.allFavLocations = result.rows.map(data => data.location);
+      return next();
+    });
+  } catch (err) {
+    return next(err);
+  }
+}
 
 module.exports = apiController;
