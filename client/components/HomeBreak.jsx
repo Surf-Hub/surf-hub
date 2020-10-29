@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableHighlight, Modal, Button } from 'react-native';
+import ViewMoreModal from './ViewMoreModal';
 import styles from '../styles';
 
 export default function HomeBreak() {
@@ -44,15 +45,7 @@ export default function HomeBreak() {
       </TouchableHighlight>
 
       {/* Modal that will popup if the user clicks to view more info */}
-      <Modal
-        visible={modalVisible}
-        animationType="slide"
-        onRequestClose={() => console.log('closed')}
-      >
-        <View style={styles.modalContainer}>
-          <Button title="Exit Modal" onPress={() => setModalVisible(false)} />
-        </View>
-      </Modal>
+      <ViewMoreModal modalVisible={modalVisible} setModalVisible={setModalVisible} />
     </View>
   );
 }
