@@ -1,12 +1,15 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 import { View, Text, TouchableHighlight, Modal, Button } from 'react-native';
+import { List } from 'react-native-paper';
 import ViewMoreModal from './ViewMoreModal';
 import styles from '../styles';
 
 export default function HomeBreak(props) {
   // State that toggles whether modal is visible or not
   const [modalVisible, setModalVisible] = useState(false);
+  // Sets whether accordion is expanded or not
+  const [expanded, setExpanded] = useState(false);
   // Home break data from props
   const { homeBreak } = props;
   // const dummyData = {
@@ -19,18 +22,29 @@ export default function HomeBreak(props) {
   //   windDirection: '2 kts 119 SW',
   //   highLowTide: 'low 3.9 ft',
   // };
+  // Function to expand accordion
+  const handlePress = () => {
+    setExpanded(!expanded);
+  }
 
   return (
-    <View style={styles.homeBreakBox}>
+    <List.Accordion style={styles.homeBreakBox} title="Home Break" expanded={expanded} onPress={handlePress}>
       {/* Weather Data for home break spot */}
-      <Text>Name: {homeBreak.name}</Text>
-      <Text>Latitude: {homeBreak.latitude}</Text>
-      <Text>Longitude: {homeBreak.longitude}</Text>
-      <Text>Swell Height: {homeBreak.swellHeight}</Text>
-      <Text>H2O Temp: {homeBreak.h2oTemp}</Text>
-      <Text>Weather: {homeBreak.weather}</Text>
-      <Text>Wind Direction: {homeBreak.windDirection}</Text>
-      <Text>High/Low Tide: {homeBreak.highLowTide}</Text>
+      <List.Item title={`Name: ${homeBreak.name}`} />
+      <List.Item title={`Latitude: ${homeBreak.latitude}`} />
+      <List.Item title={`Longitude: ${homeBreak.longitude}`} />
+      <List.Item title={`Swell Height: ${homeBreak.swellHeight}`} />
+      <List.Item title={`H2O Temp: ${homeBreak.h2oTemp}`}/>
+      <List.Item title={`Weather: ${homeBreak.weather}`}/>
+      <List.Item title={`Wind Direction: ${homeBreak.windDirection}`}/>
+      <List.Item title={`High/Low Tide: ${homeBreak.highLowTide}`}/>
+      {/* <List.Item>Latitude: {homeBreak.latitude}</List.Item>
+      <List.Item>Longitude: {homeBreak.longitude}</List.Item>
+      <List.Item>Swell Height: {homeBreak.swellHeight}</List.Item>
+      <List.Item>H2O Temp: {homeBreak.h2oTemp}</List.Item>
+      <List.Item>Weather: {homeBreak.weather}</List.Item>
+      <List.Item>Wind Direction: {homeBreak.windDirection}</List.Item>
+      <List.Item>High/Low Tide: {homeBreak.highLowTide}</List.Item> */}
 
       {/* Button to trigger modal popup */}
       <TouchableHighlight style={styles.viewMore} onPress={() => setModalVisible(true)}>
@@ -52,6 +66,6 @@ export default function HomeBreak(props) {
 
       {/* Modal that will popup if the user clicks to view more info */}
       <ViewMoreModal modalVisible={modalVisible} setModalVisible={setModalVisible} />
-    </View>
+    </List.Accordion>
   );
 }
