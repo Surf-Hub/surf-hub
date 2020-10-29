@@ -26,8 +26,8 @@ export default function Login({ navigation }) {
         scopes: ['profile', 'email'],
       });
       if (result.type === 'success') {
-        navigation.navigate('Surf Hub');
-        console.log(result);
+        navigation.navigate('Surf Hub',{photoUrl:result.user.photoUrl});
+        // console.log(result);
         return result.accessToken;
       }
       return { cancelled: true };

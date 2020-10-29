@@ -11,7 +11,9 @@ const surferImg = {
     'https://images.pexels.com/photos/1556796/pexels-photo-1556796.jpeg?auto=compress&amp;cs=tinysrgb&amp;h=750&amp;w=1260',
 };
 
-export default function HomePage() {
+export default function HomePage({ route }) {
+  console.log('this is the route:', route);
+  const { photoUrl } = route.params;
   // homeBreak is what populates the main text area on the page
   const [homeBreak, setHomeBreak] = useState({
     name: 'Manhattan Beach',
@@ -26,7 +28,7 @@ export default function HomePage() {
 
   return (
     <View>
-      <HomeNav />
+      <HomeNav photoUrl={photoUrl} />
       <ScrollView>
         <ImageBackground source={surferImg} style={[styles.backGroundImage]}>
           <SearchBar setHomeBreak={setHomeBreak} />
