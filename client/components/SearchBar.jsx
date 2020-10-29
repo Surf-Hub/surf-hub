@@ -16,19 +16,35 @@ export default function SearchBar(props) {
   // Function that gets invoked after submitting search bar
   const submitSearch = () => {
     // Fetch data about home break from backend
-    // Set home break to the response object
-    props.setHomeBreak({
-      name: searchBar.name,
-      latitude: searchBar.latitude,
-      longitude: searchBar.longitude,
-      swellHeight: '',
-      h2oTemp: '',
-      weather: '',
-      windDirection: '',
-      highLowTide: '',
-    });
-    // Reset inputs to empty strings
-    setSearchBar(defaultSearch);
+    fetch('http://localhost:3000/api', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        lat: searchBar.latitude,
+        lng: searchBar.longitude,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        // Set home break to the response object
+        props.setHomeBreak({
+          name: searchBar.name,
+          latitude: searchBar.latitude,
+          longitude: searchBar.longitude,
+          swellHeight: data.swellHeight,
+          h2oTemp: data.waterTemperature,
+          weather: '',
+          windDirection: data.windDirection,
+          highLowTide: data.tide,
+        });
+        // Reset inputs to empty strings
+        setSearchBar(defaultSearch);
+        console.log(data);
+      })
+      .catch((err) => console.error(err));
   };
 
   return (
@@ -54,7 +70,9 @@ export default function SearchBar(props) {
       {/* <Pressable style={styles.searchButton} onPressIn={submitSearch}>
         <Text style={{ color: 'white' }}>Surfs Up Bra</Text>
       </Pressable> */}
-      <Button mode="contained" style={styles.searchButton} onPress={submitSearch}>Surf's Up Bra</Button>
+      <Button mode="contained" style={styles.searchButton} onPress={submitSearch}>
+        Surf's Up Bra
+      </Button>
     </View>
   );
 }

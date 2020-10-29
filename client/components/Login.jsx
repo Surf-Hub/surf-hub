@@ -3,8 +3,10 @@ import React from 'react';
 import { Text, View, Image } from 'react-native';
 import { Button } from 'react-native-paper';
 import * as Linking from 'expo-linking';
-import styles from '../styles';
 import * as Google from 'expo-google-app-auth';
+import styles from '../styles';
+
+
 
 const logo = require('../../assets/logo.png');
 
@@ -12,9 +14,8 @@ export default function Login({ navigation }) {
   // const handlePress = () => {
   //   Linking.openURL('http://localhost:3000/auth/linkedin');
   // }
-  const navToHome = () => {
-    navigation.navigate('Surf Hub');
-  };
+
+
 
   async function signInWithGoogleAsync() {
     try {
@@ -43,7 +44,7 @@ export default function Login({ navigation }) {
     <View style={styles.container}>
       <Image source={logo} style={{ width: 75, height: 75 }} />
       <Text style={styles.loginText}>Login</Text>
-      <Button style={styles.loginButton} mode="outlined" onPress={navToHome}>
+      <Button style={styles.loginButton} mode="outlined" onPress={signInWithGoogle}>
         Sign in with Google
       </Button>
     </View>

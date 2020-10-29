@@ -1,6 +1,6 @@
 const apiController = {};
 const fetch = require('node-fetch');
-const db = require('../models.js')
+const db = require('../models.js');
 
 apiController.getWeatherData = async (req, res, next) => {
   const { lat, lng } = req.body;
@@ -18,7 +18,7 @@ apiController.getWeatherData = async (req, res, next) => {
   res.locals.end = end;
 
   const weatherParams = 'swellHeight,waterTemperature,windDirection';
-  const apiKey = '945e95b2-19a0-11eb-b3db-0242ac130002-945e9698-19a0-11eb-b3db-0242ac130002';
+  const apiKey = '8102fd58-1a0b-11eb-b3db-0242ac130002-8102fdda-1a0b-11eb-b3db-0242ac130002';
   const apiUrl = `https://api.stormglass.io/v2/weather/point?lat=${lat}&lng=${lng}&params=${weatherParams}&start=${start}&end=${end}`;
   const configObj = {
     headers: {
@@ -31,8 +31,8 @@ apiController.getWeatherData = async (req, res, next) => {
       .then((res) => res.json())
       .then((data) => {
         const getAvg = (dataObj) => {
-          let values = Object.values(dataObj);
-          let avg = values.reduce((acc, cur) => acc + cur) / values.length;
+          const values = Object.values(dataObj);
+          const avg = values.reduce((acc, cur) => acc + cur) / values.length;
           return avg.toFixed(2);
         };
 
@@ -52,7 +52,7 @@ apiController.getWeatherData = async (req, res, next) => {
 apiController.getTideData = async (req, res, next) => {
   const { lat, lng } = req.body;
 
-  const apiKey = '945e95b2-19a0-11eb-b3db-0242ac130002-945e9698-19a0-11eb-b3db-0242ac130002';
+  const apiKey = '8102fd58-1a0b-11eb-b3db-0242ac130002-8102fdda-1a0b-11eb-b3db-0242ac130002';
   const apiUrl = `https://api.stormglass.io/v2/tide/extremes/point?lat=${lat}&lng=${lng}&start=${res.locals.start}&end=${res.locals.end}`;
   const configObj = {
     headers: {
@@ -64,7 +64,7 @@ apiController.getTideData = async (req, res, next) => {
     await fetch(apiUrl, configObj)
       .then((res) => res.json())
       .then((data) => {
-        res.locals.surfConditions.tide = data.data[0].type;
+        res.locals.surfConditions.tide = data.data;
         return next();
       });
   } catch (err) {
@@ -100,12 +100,12 @@ apiController.getAllFavLocations = async (req, res, next) => {
 
   try {
     await db.query(postConfig, (err, result) => {
-      res.locals.allFavLocations = result.rows.map(data => data.location);
+      res.locals.allFavLocations = result.rows.map((data) => data.location);
       return next();
     });
   } catch (err) {
     return next(err);
   }
-}
+};
 
 module.exports = apiController;
