@@ -1,11 +1,14 @@
 const express = require('express');
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const apiRouter = require('./routes/api-routes.js')
 const db = require('./models');
 
 const app = express();
-
 const PORT = 3000;
+
+app.use(express.json());
+app.use('/api', apiRouter);
 
 passport.serializeUser(function (user, done) {
   done(null, user);
