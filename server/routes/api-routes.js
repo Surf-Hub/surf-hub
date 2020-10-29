@@ -1,5 +1,4 @@
 const express = require('express');
-const fetch = require('node-fetch');
 const apiRouter = express.Router();
 const apiController = require('../controllers/apiController.js');
 
@@ -9,5 +8,10 @@ apiRouter.get('/',
     (req, res) => {
         res.status(200).json(res.locals.surfConditions)
 });
+
+apiRouter.post('/', apiController.addFavLocation, (req, res) => {
+    res.status(200).send('success')
+})
+
 
 module.exports = apiRouter;
