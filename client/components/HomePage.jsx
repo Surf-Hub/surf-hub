@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Text, View, Image, Button, TextInput, ImageBackground, ScrollView } from 'react-native';
 import styles from '../styles';
 import HomeBreak from './HomeBreak';
@@ -12,13 +12,26 @@ const surferImg = {
 };
 
 export default function HomePage() {
+  // homeBreak is what populates the main text area on the page
+  const [homeBreak, setHomeBreak] = useState({
+    name: 'Manhattan Beach',
+    latitude: 46.9718,
+    longitude: 73.2174,
+    swellHeight: '1-2 ft',
+    h2oTemp: '63-66 F',
+    weather: '67 F',
+    windDirection: '2 kts 119 SW',
+    highLowTide: 'low 3.9 ft',
+  });
+
   return (
     <View>
       <HomeNav />
       <ScrollView>
         <ImageBackground source={surferImg} style={[styles.backGroundImage]}>
-          <SearchBar />
-          <HomeBreak />
+          <SearchBar setHomeBreak={setHomeBreak} />
+          {/* Render homebreak after the first one is added */}
+          <HomeBreak homeBreak={homeBreak} />
         </ImageBackground>
       </ScrollView>
     </View>
